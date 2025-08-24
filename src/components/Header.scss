@@ -1,273 +1,162 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
 
-header {
-  font-family: 'Russo One', sans-serif;
-}
+header, .header { font-family: 'Russo One', sans-serif; }
 
+// ===== переменные (с фолбэками к css vars)
+$main-blue:   var(--main-blue, #0a2342);
+$light-blue:  var(--light-blue, rgba(255,255,255,.08));
+$accent-blue: var(--accent-blue, #1b87d6);
+$white:       var(--white, #e7f0f7);
+$text-color:  #2c3e50;
+$ring:        rgba(25,195,243,.25);
+$border-radius: 10px;
 
-// Переменные
-$main-blue: var(--main-blue);
-$light-blue: var(--light-blue);
-$accent-blue: var(--accent-blue);
-$white: var(--white);
-$text-color: #2c3e50;
-$border-radius: 6px;
+// ===== базовый контейнер шапки (и для .header, и для .header__bar)
+.header{
+  position: sticky; top: 8px; z-index: 1000;
 
-// Header
-.header {
-  background: $main-blue;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem 2rem;
-  height: 65px;
-  background-color:#0a2342;
-  
-  box-shadow: 0 2px 8px rgb(36, 109, 198);
-  border-radius: 20px;
-  
+  &, &__bar{
+    max-width: none;
+    width: min(1500px, 86vw);;
+    margin: 12px auto;
+    padding: clamp(10px,1.6vw,16px) clamp(14px,3vw,28px);
 
-  .logo-block {
-    display: flex;
+    background: linear-gradient(180deg, #0f2840, #0d2236);
+    border-radius: 22px;
+    box-shadow: 0 0 0 1px $ring inset, 0 10px 24px rgba(0,0,0,.35);
+
+    display: grid;
+    grid-template-columns: auto minmax(0,1fr) auto;
+    gap: clamp(10px,2vw,28px);
     align-items: center;
-    gap: 1px;
-
-    .logo-placeholder {
-      width: 230px;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .company-name {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #42aaff;
-      margin-left: -35px;
-    }
   }
 
-  .nav-menu-dropdown {
-    display: flex;
-    position: relative;
+  /* логотип */
+  .logo-block{ display:flex; align-items:center; min-width:0; }
+  .logo-placeholder{ width: clamp(120px, 18vw, 230px); height:auto; object-fit:contain; }
+
+  .company-name{
+    font-size: clamp(16px, 2.6vw, 24px);
+    font-weight: 800;
+    color: #42aaff;
+    margin-left: -12px;
+    white-space: nowrap;
+  }
+
+  /* меню (desktop) */
+  .nav-menu{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    justify-content: end;
     align-items: center;
-
-    .nav-select {
-      padding: 8px 16px;
-      font-size: 1rem;
-      width: 50%;
-      border: 1px solid #ccc;
-      border-radius: $border-radius;
-      background-color: #f9f9f9;
-      color: $text-color;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-
-      &:hover {
-        background-color: #f0f0f0;
-      }
-
-      &:focus {
-        outline: none;
-        border-color: #3498db;
-        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
-      }
-    }
+    gap: clamp(8px,2vw,20px);
+    min-width: 0;
   }
 
-  .contacts {
-  color: $white;
-  font-weight: 500;
-  font-size: 1.1rem;
-  margin-left: 1rem;
-  align-items: center;
-  white-space: nowrap;
-  margin-top: 0px;
-}
-
-.cta-wrapper {
-  margin-left: 1.5rem;
-}
-
-.cta-button {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    color: $white;
-    margin-top: 0px;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: $border-radius;
-    transition: background 0.2s;
-
-    &:hover {
-      background: $light-blue;
-      color: $main-blue;
-    }
-  }
-
-
-
-  .nav-dropdown {
-  position: relative;
-  
-
-  .dropdown-button {
-    background: none;
+  .nav-link{
+    margin: 0;
+    padding: .55rem .9rem;
     font-size: 1.1rem;
-    border: none;
-    font-size: 1.1rem;
-    color: $white;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: $border-radius;
-    transition: background 0.2s;
-
-    &:hover {
-      background: $light-blue;
-      color: $main-blue;
-    }
-  }
-
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    
-    background: #ffffffcf;
-    border-radius: $border-radius;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-width: 300px;
-    z-index: 10;
-    padding: 0.5rem 0;
-
-    li {
-      list-style: none;
-
-      .dropdown-item {
-        display: block;
-        padding: 0.75rem 1rem;
-        color: $text-color;
-        text-decoration: none;
-        font-size: 1rem;
-        transition: background 0.2s;
-
-        &:hover {
-          background: #f5f5f5;
-        }
-
-        &.active {
-          background: $accent-blue;
-          color: $white;
-        }
-      }
-    }
-  }
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center; // 🔧 добавь
-  gap: 1.2rem;
-
-  .nav-link {
-    margin-bottom: 0; // 🔧 убрать "смещение вниз"
-    padding: 0.5rem 1rem;
-    font-size: 1.1rem;
-    line-height: 1.2; // 🔧 опционально
+    line-height: 1.2;
     color: $white;
     text-decoration: none;
     border-radius: $border-radius;
-    transition: background 0.2s, color 0.2s;
+    background: $light-blue;
+    border: 1px solid rgba(255,255,255,.12);
+    transition: background .2s,color .2s,transform .12s;
 
-    &:hover {
-      background: $light-blue;
-      color: $main-blue;
-    }
-
-    &.active {
-      background: $accent-blue;
-      color: $white;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
+    &:hover{ background: rgba(255,255,255,.12); color: $white; transform: translateY(-1px); }
+    &.active{ background: $accent-blue; border-color: $accent-blue; color: #fff; }
   }
 
-  .burger-button {
-    display: block;
+  .contacts{
+    color: #c9eaff; font-weight: 800; white-space: nowrap;
   }
 
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    background: $main-blue;
-    padding: 1rem;
-    gap: 1rem;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-}
+  .cta-wrapper{ margin-left: .25rem; }
 
-.burger-button {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: $white;
-  cursor: pointer;
-}
+  /* ✅ hover без Sass lighten() */
+  .cta-button,
+  .cta-wrapper .nav-link{
+    background: $accent-blue;
+    border-color: $accent-blue;
+    color:#fff;
 
-.mobile-menu {
-  position: absolute;
-  top: 64px;
-  left: 0;
-  right: 0;
-  background: $main-blue;
-  padding: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  z-index: 1000;
-
-  a {
-    color: $white;
-    text-decoration: none;
-    font-size: 1.1rem;
-
-    &:hover {
-      color: $accent-blue;
+    /* fallback для старых браузеров */
+    &:hover{
+      background: #2292e3; /* ≈ lighten(#1b87d6, 4%) */
+      /* современный вариант с CSS-переменной */
+      background: color-mix(in srgb, var(--accent-blue, #1b87d6) 96%, white);
     }
   }
 
-  .mobile-contacts {
-    color: $white;
-    font-weight: bold;
+  /* дропдаун */
+  .nav-dropdown{ position: relative; }
+  .dropdown-button{
+    background: transparent; border: none; color: $white;
+    padding:.55rem .9rem; border-radius:$border-radius; cursor:pointer;
+    transition: background .2s;
+    &:hover{ background: rgba(255,255,255,.1); }
+  }
+  .dropdown-menu{
+    position: absolute; top: calc(100% + 8px); right: 0;
+    min-width: 300px; max-width: 70vw; padding: 8px;
+    background: rgba(14,28,42,.98);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,.45);
+    z-index: 1100;
+
+    li{ list-style:none; }
+    .dropdown-item{
+      display:block; padding:10px 12px; color:$white; text-decoration:none; border-radius:8px;
+      &:hover, &.active{ background: rgba(25,195,243,.14); }
+    }
+  }
+
+  /* бургер */
+  .burger-button{
+    display:none;
+    width:40px; height:40px;
+    background: rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px; color:$white; font-size:20px; cursor:pointer;
+  }
+
+  /* мобильное меню-полотно */
+  .mobile-menu{
+    position: fixed; inset: 0; z-index: 1200;
+    background: rgba(6,12,18,.92); backdrop-filter: blur(6px);
+    display: grid; align-content: start; gap: 12px;
+    padding: 18px 16px 24px;
+
+    a{
+      color:$white; text-decoration:none; font-size:1.05rem;
+      padding: 12px 10px; border-radius: 12px; background: rgba(255,255,255,.06);
+      &:hover{ color:#fff; background: rgba(255,255,255,.12); }
+    }
+    .mobile-contacts{ color:#c9eaff; font-weight:800; padding: 4px 0 8px; }
+    .cta-button{ display:inline-block; }
   }
 }
 
-// Медиа-запрос
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .burger-button {
-    display: block;
-  }
+/* ===== брейкпоинты */
+@media (max-width: 1080px){
+  .header .contacts{ display:none; }
 }
 
-// .mobile-menu {
-//   display: none;
-// }
+@media (max-width: 980px){
+  .header .nav-menu{ display:none; }
+  .header .burger-button{ display:inline-flex; justify-self:end; }
+}
 
-// .mobile-menu.open {
-//   display: flex;
-// }
+@media (max-width: 520px){
+  .header, .header__bar{ padding: 10px 12px; border-radius: 18px; }
+  .header .logo-placeholder{ width: clamp(100px, 30vw, 160px); }
+  .header .company-name{ margin-left: -6px; font-size: clamp(14px, 4.6vw, 18px); }
+}
+
+@media (max-width: 380px){
+  .header .logo-placeholder{ width: clamp(90px, 34vw, 140px); }
+  .header .burger-button{ width:36px; height:36px; font-size:18px; }
 }
