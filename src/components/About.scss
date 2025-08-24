@@ -1102,3 +1102,44 @@ html, body { overflow-x: hidden; }
   .hero-split__media img { margin: 0 auto; }
   .video-analytics__media.media-overlap { width: 90vw; aspect-ratio: 16/11; }
 }
+
+
+
+/* ==== VIDEO-ANALYTICS: mobile fix (≤480px) ==== */
+@media (max-width: 480px){
+  /* сам список и его пункты — строго слева */
+  .video-analytics__list{
+    text-align: center;
+    margin: 0 auto;
+    margin-right: 30px;
+    max-width: 46ch;          /* комфортная ширина строки */
+  }
+  .video-analytics__item{
+    padding-left: 19px;       /* место под точку */
+  }
+  .video-analytics__item::before{
+    left: 0;                   /* маркер внутри контейнера */
+    right: auto;
+  }
+  .video-analytics__text{
+    text-align: left;
+    overflow-wrap: anywhere;   /* не уедет из-за длинных слов */
+    word-break: break-word;
+  }
+
+  /* медиа — не шире колонки, не вылезает за экран */
+  .video-analytics__media{ 
+    overflow: hidden;         /* скругления не «текут» */
+
+  }
+  .video-analytics__media.media-overlap{
+    width: min(92vw, 380px);   /* под узкие экраны */
+    margin-inline: auto;
+  }
+  .video-analytics__media img,
+  .media-overlap .va-photo{
+    max-width: 100%;
+    height: auto;
+    margin-right: 30px;
+  }
+}
