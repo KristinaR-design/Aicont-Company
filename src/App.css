@@ -1,0 +1,163 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Основная цветовая палитра */
+:root {
+  --main-blue: #00131c;
+  --light-blue: #2ca6e0;
+  --accent-blue: #1976d2;
+  --white: #fff;
+  --footer-bg: #0a2342;
+  --footer-text: #e3f2fd;
+}
+
+
+
+body {
+  background: var(--main-blue);
+  color: var(--white);
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.page-section {
+  padding: 3rem 2rem 2rem 2rem;
+  border-radius: 18px;
+  margin: 2rem auto 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 32px rgba(10,35,66,0.10);
+  background: rgba(255,255,255,0.10);
+  position: relative;
+  overflow: hidden;
+}
+.page-section h1 {
+  font-size: 2.2rem;
+  color: var(--light-blue);
+  margin-bottom: 1rem;
+}
+.page-section .desc {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+.advantages {
+  list-style: disc inside;
+  color: var(--footer-text);
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+}
+
+/* Фоновые изображения/цвета для страниц */
+.bg-electric {
+  background: linear-gradient(120deg, #0a2342 60%, #2ca6e0 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+.bg-projects {
+  background: linear-gradient(120deg, #0a2342 60%, #1976d2 100%), url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+.bg-buildings {
+  background: linear-gradient(120deg, #0a2342 60%, #2ca6e0 100%), url('https://images.unsplash.com/photo-1503389152951-9c3d8b6e9a2c?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+.bg-roads {
+  background: linear-gradient(120deg, #0a2342 60%, #1976d2 100%), url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+.bg-railways {
+  background: linear-gradient(120deg, #0a2342 60%, #2ca6e0 100%), url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+.bg-utilities {
+  background: linear-gradient(120deg, #0a2342 60%, #1976d2 100%), url('https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+.bg-other {
+  background: linear-gradient(120deg, #0a2342 60%, #2ca6e0 100%), url('https://images.unsplash.com/photo-1468421870903-4df1664ac249?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+/* 
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 1.2rem 0 1.2rem 0;
+  font-size: 1rem;
+  margin-top: auto;
+  border-top: 1px solid #1976d2;
+} */
+
+
+
+#trail-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.trail-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(66, 148, 255, 0.7);
+  animation: fadeOut 0.6s forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}

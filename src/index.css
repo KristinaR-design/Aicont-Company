@@ -1,0 +1,27 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2.2em;
+  line-height: 1.1;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
