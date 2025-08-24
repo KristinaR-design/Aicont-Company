@@ -940,136 +940,14 @@ align-self: start;                        /* чтобы можно было см
 
 
 
-/* ===== MOBILE POLISH — телефоны ===== */
+/* ================== FINAL MOBILE/SMALL POLISH ================== */
 
-/* чуть поджимаем отступы/размеры для small phones */
-@media (max-width: 540px) {
-  .hero-split { padding: 14px; }
-  .hero-split__title { letter-spacing: .1px; }
-  .hero-split__text  { max-width: 32ch; margin-left: 10px; }
-
-  .radio__img,
-  .dpi__img,
-  .pbx__img { border-radius: 10px; }
-
-  .radio-analytics__img { max-width: 78vw; }
-}
-
-/* основные телефона (≤480px) */
-@media (max-width: 480px) {
-  html, body { -webkit-text-size-adjust: 100%; }
-
-  .hero-split,
-  .theft, .offer, .radio, .cycle, .deploy,
-  .radio-analytics, .video-analytics, .dpi, .pbx {
-    padding-left: 12px; padding-right: 12px;
-  }
-
-  .hero-split__inner { gap: 14px; }
-  .hero-split__title { font-size: clamp(20px, 7vw, 28px); }
-  .hero-split__media img { max-width: 68vw; }
-  .hero-split__text { font-size: clamp(13px, 3.8vw, 16px); max-width: 28ch; }
-
-  .theft__grid, .offer__grid, .radio__grid,
-  .radio-analytics__grid, .video-analytics__grid,
-  .dpi__grid, .pbx__grid { gap: 14px 16px; }
-
-  .theft__icon, .offer__icon, .radio__icon, .deploy__icon { width: 30px; }
-
-  .cycle__num { font-size: clamp(32px, 12vw, 54px); }
-  .cycle__arrow img { width: 24px; }
-
-  .video-analytics__media.media-overlap { width: min(92vw, 380px); }
-  .deploy__decor--left { display: none; } /* чтобы боковая линия не мешала */
-}
-
-/* очень узкие (≤400px) */
-@media (max-width: 400px) {
-  .theft__heading { font-size: 14px; }
-  .theft__text, .offer__text, .radio__text, .dpi__text, .pbx__text { font-size: 13px; }
-  .cycle__grid { gap: 12px; }
-  .cycle__pic { min-height: 52px; }
-  .radio-analytics__img { max-width: 76vw; }
-}
-
-/* сверхузкие/старые устройства (≤360px): аварийное стекование */
-@media (max-width: 360px) {
-  .theft__grid,
-  .offer__grid,
-  .radio__grid,
-  .radio-analytics__grid,
-  .video-analytics__grid,
-  .dpi__grid,
-  .pbx__grid {
-    grid-template-columns: 1fr;  /* временно в одну колонку */
-  }
-
-  .hero-split__inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-split__content { text-align: center; }
-  .hero-split__media img { margin: 0 auto; }
-
-  .video-analytics__media.media-overlap {
-    width: 90vw; aspect-ratio: 16/11;
-  }
-}
-
-/* ==== phones: выравнивание по правому краю ==== */
-@media (max-width: 480px) {
-  /* заголовки и контент секций */
-  .hero-split__content,
-  .theft__title, .offer__title, .radio__title, .cycle__title, .deploy__title,
-  .radio-analytics__title, .video-analytics__title, .dpi__title, .pbx__title {
-    text-align: center;
-  }
-
-  /* элементы с иконкой + текстом — текст направо */
-  .theft__item, .offer__item, .radio__item, .deploy__item,
-  .radio__list, .offer__grid, .deploy__list {
-    text-align: 
-    left;
-  }
-
-  /* буллиты/точки: переносим маркер вправо */
-  .radio-analytics__item,
-  .video-analytics__item,
-  .dpi__item,
-  .pbx__item,
-  .cycle__list li {
-    padding-right: 0;
-    padding-left: 22px;
-  }
-  .radio-analytics__item::before,
-  .video-analytics__item::before,
-  .dpi__item::before,
-  .pbx__item::before,
-  .cycle__list li::before {
-    left: 0; right: auto;
-  }
-
-  /* hero: на очень узких делаем одну колонку, но остаёмся выравненными вправо */
-  .hero-split__inner { grid-template-columns: 1fr; }
-  .hero-split__media img { margin-left: auto; } /* картинка прилипает к правому краю */
-}
-
-/* ==== extra-small: 380px и ниже — чуть плотнее и меньше ==== */
-@media (max-width: 380px) {
-  .hero-split { padding: 12px; }
-  .hero-split__title { font-size: clamp(18px, 7.5vw, 24px); }
-  .hero-split__text  { font-size: 13px; margin-left: 8px; max-width: 26ch; }
-
-  .theft__icon, .offer__icon, .radio__icon, .deploy__icon { width: 26px; }
-  .video-analytics__media.media-overlap { width: 92vw; } /* чтобы не вылезало */
-}
-
-
-/* ====== MOBILE FIX PACK ====== */
-
-/* технически полезные мелочи */
+/* базовые страховки */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { overflow-x: hidden; }
 :root { --pad-mob: 12px; }
 
-/* 1) не даём гриду расползаться из-за длинных строк/списков */
+/* не даём гриду разъезжаться из-за длинных строк */
 .cycle__grid {
   grid-template-columns: minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);
 }
@@ -1079,37 +957,51 @@ html, body { overflow-x: hidden; }
 .dpi__list,
 .pbx__list { min-width: 0; }
 
-/* 2) медиа в правых колонках всегда подчиняются ширине своей колонки */
-.video-analytics__media.media-overlap {
-  width: min(100%, 640px);      /* вместо clamp(320px, 42vw, 640px) */
+/* «Видео-аналитика» — медиа всегда в пределах колонки */
+.video-analytics__media.media-overlap{
+  width: min(100%, 640px);
   max-width: 100%;
 }
 .video-analytics__media.media-overlap .va-photo { max-width: 100%; }
 
-/* ====== телефоны до 540 px ====== */
-@media (max-width: 540px) {
-  /* общие отступы секций */
+/* доп. ограничения для всех картинок внутри правых медиа-колонок */
+.radio__media img,
+.radio-analytics__media img,
+.dpi__media img,
+.pbx__media img { max-width: 100%; height: auto; }
+
+/* ——— телефоны до 768 px (планшеты портретом тоже приятнее) ——— */
+@media (max-width: 768px){
   .hero-split,
   .theft, .offer, .radio, .cycle, .deploy,
   .radio-analytics, .video-analytics, .dpi, .pbx {
-    padding-left: var(--pad-mob);
-    padding-right: var(--pad-mob);
+    padding-left: clamp(10px, 2.5vw, 18px);
+    padding-right: clamp(10px, 2.5vw, 18px);
   }
+}
 
-  /* аккуратнее заголовки/текст */
+/* ——— телефоны до 540 px ——— */
+@media (max-width: 540px){
   .hero-split__title { letter-spacing: .1px; }
   .hero-split__text  { max-width: 32ch; margin-left: 10px; }
-
-  /* округление картинок */
   .radio__img, .dpi__img, .pbx__img { border-radius: 10px; }
 
-  /* «Видео-аналитика»: картинка не шире колонки */
+  /* Видео-аналитика: контейнер не шире экрана */
   .video-analytics__media.media-overlap { width: min(100%, 420px); }
 }
 
-/* ====== телефоны до 480 px ====== */
-@media (max-width: 480px) {
-  /* все 2-колоночные сетки — в один столбец */
+/* ——— основные телефоны (≤480 px) ——— */
+@media (max-width: 480px){
+
+  /* iOS safe area (чёлка/скошенные края) */
+  .hero-split,
+  .theft, .offer, .radio, .cycle, .deploy,
+  .radio-analytics, .video-analytics, .dpi, .pbx {
+    padding-left: calc(var(--pad-mob) + env(safe-area-inset-left));
+    padding-right: calc(var(--pad-mob) + env(safe-area-inset-right));
+  }
+
+  /* все 2-колоночные сетки — в одну колонку */
   .theft__grid,
   .offer__grid,
   .radio__grid,
@@ -1119,7 +1011,7 @@ html, body { overflow-x: hidden; }
   .dpi__grid,
   .pbx__grid { grid-template-columns: 1fr; gap: 14px; }
 
-  /* заголовки по центру — читается лучше */
+  /* заголовки по центру */
   .theft__title, .offer__title, .radio__title, .cycle__title, .deploy__title,
   .radio-analytics__title, .video-analytics__title, .dpi__title, .pbx__title {
     text-align: center;
@@ -1129,59 +1021,84 @@ html, body { overflow-x: hidden; }
   .theft__item, .offer__item, .radio__item, .deploy__item,
   .radio__list, .deploy__list { text-align: left; }
 
-  /* уменьшить иконки и зазоры */
+  /* буллиты/точки — всегда слева, не обрезаются */
+  .radio-analytics__item,
+  .video-analytics__item,
+  .dpi__item,
+  .pbx__item,
+  .cycle__list li{
+    padding-left: 22px;
+    padding-right: 0;
+  }
+  .radio-analytics__item::before,
+  .video-analytics__item::before,
+  .dpi__item::before,
+  .pbx__item::before,
+  .cycle__list li::before{
+    left: 0; right: auto;
+  }
+
+  /* иконки и зазоры компактнее */
   .theft__icon, .offer__icon, .radio__icon, .deploy__icon { width: 30px; }
   .theft__grid, .offer__grid, .radio__grid,
   .radio-analytics__grid, .video-analytics__grid,
   .dpi__grid, .pbx__grid { gap: 14px 16px; }
 
-  /* hero: одна колонка, картинка справа */
+  /* hero: одна колонка, картинка прижата вправо */
   .hero-split__inner { grid-template-columns: 1fr; gap: 14px; }
   .hero-split__media img { max-width: 68vw; margin-left: auto; }
   .hero-split__title { font-size: clamp(20px, 7vw, 28px); }
   .hero-split__text  { font-size: clamp(13px, 3.8vw, 16px); max-width: 28ch; }
 
-  /* «Полный цикл защиты»: вертикальная колонка, без стрелок */
-  .cycle__grid {
-    grid-template-columns: 1fr;
-    row-gap: 14px;
-  }
+  /* Полный цикл: вертикально, без стрелок */
+  .cycle__grid { grid-template-columns: 1fr; row-gap: 14px; }
   .cycle__arrow { display: none; }
   .cycle__num  { font-size: clamp(32px, 12vw, 54px); }
   .cycle__pic  { min-height: 56px; }
 
-  /* «Видео-аналитика»: компактнее контейнер и фото */
+  /* Видео-аналитика: чуть меньше фото */
   .video-analytics__media.media-overlap { width: min(92vw, 380px); }
   .va-photo { width: 86%; }
 
-  /* «АТС и мессенджер»: картинка ниже списка и шире */
+  /* PBX: картинка шире и ниже списка */
   .pbx__media { margin-top: 8px; }
   .pbx__img   { width: min(92vw, 620px); margin-inline: auto; display: block; }
 
-  /* избежать переполнения длинных слов */
+  /* защита от длинных слов */
   .theft__text, .offer__text, .radio__text, .dpi__text, .pbx__text,
   .radio-analytics__text, .video-analytics__text, .cycle__text {
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    overflow-wrap: anywhere; word-break: break-word;
   }
 
-  /* выключаем левой сайд-декор-линию в deploy */
+  /* убираем левый декоративный бар, чтобы точно не мешал */
   .deploy__decor--left { display: none; }
 }
 
-/* ====== очень узкие до 400 px ====== */
-@media (max-width: 400px) {
+/* ——— очень узкие (≤400 px) ——— */
+@media (max-width: 400px){
   .theft__heading { font-size: 14px; }
   .theft__text, .offer__text, .radio__text, .dpi__text, .pbx__text { font-size: 13px; }
   .cycle__pic { min-height: 52px; }
   .radio-analytics__img { max-width: 76vw; }
 }
 
-/* ====== крошечные до 380 px ====== */
-@media (max-width: 380px) {
+/* ——— крошечные (≤380 px) ——— */
+@media (max-width: 380px){
   .hero-split { padding: 12px; }
   .hero-split__title { font-size: clamp(18px, 7.5vw, 24px); }
   .hero-split__text  { font-size: 13px; margin-left: 8px; max-width: 26ch; }
   .theft__icon, .offer__icon, .radio__icon, .deploy__icon { width: 26px; }
-  .video-analytics__media.media-overlap { width: 92vw; } /* точно не вылезет */
+  .video-analytics__media.media-overlap { width: 92vw; } /* гарантированно не вылезает */
+}
+
+/* ——— супер-узкие/старые (≤360 px) — аварийный режим ——— */
+@media (max-width: 360px){
+  .theft__grid, .offer__grid, .radio__grid,
+  .radio-analytics__grid, .video-analytics__grid,
+  .dpi__grid, .pbx__grid { grid-template-columns: 1fr; }
+
+  .hero-split__inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-split__content { text-align: center; }
+  .hero-split__media img { margin: 0 auto; }
+  .video-analytics__media.media-overlap { width: 90vw; aspect-ratio: 16/11; }
 }
