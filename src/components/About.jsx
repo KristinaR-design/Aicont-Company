@@ -10,7 +10,7 @@ import Model from '../img/offer/Model.png'
 import Setting from '../img/offer/Setting.png'
 import Safe from '../img/offer/Safe.png'
 
-import Shem from '../img/ratio/Shem.png'
+import Shem from '../img/ratio/shem.png'
 import Bluetooth from '../img/ratio/Bluetooth.png'
 import Map from '../img/ratio/Map.png'
 import Search from '../img/ratio/Search.png'
