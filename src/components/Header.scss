@@ -160,3 +160,178 @@ $border-radius: 10px;
   .header .logo-placeholder{ width: clamp(90px, 34vw, 140px); }
   .header .burger-button{ width:36px; height:36px; font-size:18px; }
 }
+
+
+.nav-dropdown { position: relative; }
+
+/* окно услуг */
+.services-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 1200; /* было 100 — поднимем над шапкой и тенью */
+  color: #ffffff;
+  border-color: #0a2342;
+  min-width: 280px;
+  max-width: 360px;
+  background: $accent-blue; /* ваш фирменный синий */
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.45);
+  backdrop-filter: saturate(120%);
+}
+
+.services-popover-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: .2px;
+}
+
+.services-popover-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.services-popover-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  display: block;
+  transition: background .18s, transform .12s, border-color .18s;
+
+  &:hover,
+  &:focus {
+    background: rgba(255,255,255,.14); /* вместо #f5f6f7 */
+    border-color: rgba(255,255,255,.22);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba(255,255,255,.2);
+  }
+}
+
+/* мобильные пункты */
+.mobile-services {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.mobile-service-item {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.06);
+  color: inherit;
+
+  &:hover {
+    background: rgba(255,255,255,.12);
+  }
+}
+
+
+/* — мобильный список услуг: компактный вид — */
+.mobile-menu {
+  /* общий отступ оставляем */
+  .mobile-services {
+    margin: 8px 0;
+    gap: 0;                    /* убираем большие зазоры */
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
+    overflow: hidden;          /* скругления по контейнеру */
+    background: rgba(255,255,255,.03);
+  }
+
+  .mobile-service-item {
+    all: unset;                /* снимаем кнопочные стили */
+    display: block;
+    width: 100%;
+    padding: 12px 14px;        /* компактнее */
+    color: #e7f0f7;
+    cursor: pointer;
+
+    /* тонкий разделитель между пунктами */
+    & + .mobile-service-item { border-top: 1px solid rgba(255,255,255,.08); }
+
+    /* hover/active — лёгкий подсвет */
+    &:hover, &:focus-visible {
+      background: rgba(255,255,255,.08);
+      outline: none;
+    }
+  }
+
+  /* оставим прежний стиль только для обычных ссылок меню, не для услуг */
+  > a {
+    background: rgba(255,255,255,.06);
+    padding: 12px 10px;
+  }
+}
+
+
+/* — бургер ровный, центрированный — */
+.burger-button{
+  display:none;
+  width:40px; height:40px;
+  background: rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  color: inherit;
+  padding: 0;
+  line-height: 0;
+  display: none;               /* включается медиазапросом */
+  place-items: center;         /* идеальное центрирование */
+}
+
+/* сам значок */
+.burger-icon,
+.burger-icon::before,
+.burger-icon::after{
+  content: "";
+  display: block;
+  width: 22px;                 /* длина полоски */
+  height: 2px;                 /* толщина */
+  background: #e7f0f7;
+  border-radius: 2px;
+  position: relative;
+  transition: transform .18s ease, opacity .18s ease, background .18s ease;
+}
+
+.burger-icon::before{ position: absolute; top: -7px; }
+.burger-icon::after { position: absolute; top:  7px; }
+
+/* лёгкий hover */
+.burger-button:hover .burger-icon,
+.burger-button:hover .burger-icon::before,
+.burger-button:hover .burger-icon::after{
+  background: #ffffff;
+}
+
+/* состояние «открыто» — делаем крестик (по aria) */
+.burger-button[aria-expanded="true"] .burger-icon { opacity: 1; }
+.burger-button[aria-expanded="true"] .burger-icon::before{
+  top: 0; transform: rotate(45deg);
+}
+.burger-button[aria-expanded="true"] .burger-icon::after{
+  top: 0; transform: rotate(-45deg);
+}
+
+/* медиазапрос у вас уже есть; он включает кнопку */
+@media (max-width: 980px){
+  .header .burger-button{
+    display: grid;             /* вместо inline-flex — идеально центрирован */
+    justify-self: end;
+  }
+}

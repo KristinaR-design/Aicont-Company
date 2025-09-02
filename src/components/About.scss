@@ -3,20 +3,88 @@
 /* Шрифты: Inter + заголовочный Russo One */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Russo+One&display=swap");
 
+
+:root { --header-h: 96px; } 
 :root{
   --bg: #0b141c;
   --text: #e7f0f7;
   --muted: #c6d2da;
   --accent: #19c3f3;
+  
 
   /* точки/подсветка можно подключить отдельно при желании */
 }
 
-html, body { background: var(--bg); color: var(--text); }
+html, body { background: var(--bg); color: var(--text); scroll-behavior: smooth;         /* плавная прокрутка для #якорей */
+  scroll-padding-top: var(--header-h);}
 body { margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif; }
 img { max-width: 100%; display: block; }
 
 .accent { color: var(--accent); }
+
+section[id] { 
+  scroll-margin-top: var(--header-h);
+}
+
+/* === мягкий буст отступов и gap (поставь в самый низ файла) === */
+:root{
+  /* крутим только эти ручки, если захочется ещё+ или поменьше */
+  --sec-gap:  clamp(32px, 6.5vw, 72px);  /* было ~24–56 */
+  --grid-gap: clamp(22px, 4.6vw, 44px);  /* было ~18–40 */
+  --list-gap: clamp(14px, 2.8vw, 22px);  /* было ~12–20 */
+  --inner-gap: clamp(12px, 2.4vw, 18px); /* внутри карточек/шагов */
+}
+
+/* 1) Секции: увеличим вертикальный зазор между блоками */
+:where(.theft,.offer,.radio,.cycle,.deploy,.radio-analytics,.video-analytics,.dpi,.pbx){
+  margin-top: var(--sec-gap);
+}
+
+/* 2) Гриды секций: шире «дыхание» между колонками/строками */
+:where(
+  .theft__grid,.offer__grid,.radio__grid,.cycle__grid,
+  .deploy__grid,.radio-analytics__grid,.video-analytics__grid,
+  .dpi__grid,.pbx__grid
+){
+  gap: var(--grid-gap);
+}
+
+/* 3) Списки внутри секций: шаг между элементами побольше */
+:where(
+  .radio__list,.offer__list,.deploy__list,
+  .radio-analytics__list,.video-analytics__list,
+  .dpi__list,.pbx__list,.cycle__list
+){
+  gap: var(--list-gap);
+}
+
+/* 4) Внутренние карточки/шаги: чуть больше воздуха */
+:where(.cycle__step){ gap: var(--inner-gap); }
+
+/* 5) На очень узких — слегка усилить только вертикальные интервалы */
+@media (max-width: 480px){
+  :root{
+    --sec-gap:  clamp(36px, 9vw, 76px);
+    --grid-gap: clamp(20px, 5.5vw, 36px);
+    --list-gap: clamp(14px, 3.6vw, 20px);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* =============== HERO SPLIT =============== */
 
@@ -87,6 +155,7 @@ img { max-width: 100%; display: block; }
 /* =============== THEFT SECTION =============== */
 
 .theft {
+  margin-top: 30px;
   margin: clamp(24px, 5vw, 56px) auto 0;
   padding: clamp(16px, 3.5vw, 24px);
   max-width: min(1200px, 96vw);
@@ -152,6 +221,7 @@ img { max-width: 100%; display: block; }
 
 /* === OFFER === */
 .offer {
+  margin-top: 30px;
   margin: clamp(94px, 5vw, 56px) auto 0;
   padding: clamp(16px, 3.5vw, 24px);
   max-width: min(1200px, 96vw);
@@ -209,6 +279,7 @@ img { max-width: 100%; display: block; }
 
 
 .radio {
+  margin-top: 50px;
   margin: clamp(24px, 5vw, 56px) auto 0;
   padding: clamp(16px, 3.5vw, 24px);
   max-width: min(1200px, 96vw);

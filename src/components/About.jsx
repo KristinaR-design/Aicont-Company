@@ -45,7 +45,7 @@ import PBX from "../img/pbx/PBX.png"
 export default function About() {
     return (
         <>
-            <section className="hero-split">
+            <section className="hero-split" id="srv-hero">
                 <div className="hero-split__inner">
                     <div className="hero-split__media">
                         <img src={Radar} alt="Радар" />
@@ -66,7 +66,7 @@ export default function About() {
             </section>
 
 
-            <section className="theft">
+            <section className="theft" id="srv-threats">
                 <h2 className="theft__title">
                     КАК МОГУТ <span className="accent">УКРАСТЬ ВАШИ ДАННЫЕ</span>
                 </h2>
@@ -113,7 +113,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="offer">
+            <section className="offer" id="srv-offer">
                 <h2 className="offer__title">
                     ЧТО МЫ <span className="accent">ПРЕДЛАГАЕМ</span>
                 </h2>
@@ -150,7 +150,7 @@ export default function About() {
             </section>
 
 
-            <section className="radio">
+            <section className="radio" id="srv-radiomonitoring">
                 <h2 className="radio__title">
                     <span className="accent">ПОЛНЫЙ КОНТРОЛЬ</span> РАДИОПРОСТРАНСТВА<br />
                     ВАШЕЙ ЛАБОРАТОРИИ
@@ -198,7 +198,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="cycle">
+            <section className="cycle" id="srv-cycle">
                 <h2 className="cycle__title">
                     ПОЛНЫЙ <span className="accent">ЦИКЛ ЗАЩИТЫ</span>
                 </h2>
@@ -270,7 +270,7 @@ export default function About() {
             </section>
 
             {/* Внедрение и масштаб слайд 6 */}
-            <section className="deploy">
+            <section className="deploy" id="srv-deploy">
                 <h2 className="deploy__title">
                     <span className="accent">ВНЕДРЕНИЕ</span> И МАСШТАБ
                 </h2>
@@ -332,7 +332,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="radio-analytics">
+            <section className="radio-analytics" id="srv-radio-analytics">
                 <h2 className="radio-analytics__title">
                     <span className="accent">РАДИО</span>АНАЛИТИКА
                 </h2>
@@ -363,7 +363,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="video-analytics">
+            <section className="video-analytics" id="srv-video-analytics">
                 <h2 className="video-analytics__title">
                     <span className="accent">ВИДЕО</span>АНАЛИТИКА
                 </h2>
@@ -402,7 +402,7 @@ export default function About() {
             </section>
 
 
-            <section className="dpi">
+            <section className="dpi" id="srv-dpi">
                 <h2 className="dpi__title">
                     АНАЛИЗ КОРПОРАТИВНОГО ТРАФИКА
                     <span className="dpi__subtitle">(DPI)</span>
@@ -436,7 +436,7 @@ export default function About() {
             </section>
 
 
-            <section className="pbx">
+            <section className="pbx" id="srv-pbx">
                 <h2 className="pbx__title">
                     <span className="accent">КОРПОРАТИВНАЯ АТС</span><br />
                     И ЗАЩИЩЕННЫЙ МЕССЕНДЖЕР С ВКС
