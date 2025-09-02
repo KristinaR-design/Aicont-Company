@@ -336,3 +336,30 @@ $border-radius: 10px;
     justify-self: end;
   }
 }
+
+
+/* заставляем кнопки в шапке вести себя как обычный текст */
+.header button,
+.header input,
+.header select {
+  font: inherit;
+  color: inherit;
+}
+
+/* приводим dropdown-кнопку к виду .nav-link */
+.header .dropdown-button{
+  all: unset;                         /* убираем нативные стили кнопки */
+  display: inline-block;
+  padding: .55rem .9rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #e7f0f7;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .12s;
+  font-family: 'Russo One', sans-serif; /* или просто font: inherit; */
+  font-size: 1.1rem;
+}
+.header .dropdown-button:hover{ background: rgba(255,255,255,.12); transform: translateY(-1px); }
+.header .dropdown-button:focus-visible{ outline: 2px solid rgba(25,195,243,.35); outline-offset: 2px; }
