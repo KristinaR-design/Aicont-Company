@@ -87,7 +87,7 @@ export default function Header() {
                     )}
                 </div>
 
-                <div className="contacts">+7 (000) 000-00-00</div>
+                <div className="contacts">8 (918) 049-10-45</div>
 
                 {/* <div className="cta-wrapper">
                     <Link to="/application" className={`nav-link ${location.pathname === '/application' ? 'active' : ''}`}>
@@ -122,7 +122,7 @@ export default function Header() {
                         ))}
                     </div>
 
-                    <div className="mobile-contacts">+7 (000) 000-00-00</div>
+                    <div className="mobile-contacts">8 (918) 049-10-45</div>
                     {/* <Link to="/application" className="cta-button" onClick={() => setIsMobileMenuOpen(false)}>
                         Оставить заявку
                     </Link> */}
