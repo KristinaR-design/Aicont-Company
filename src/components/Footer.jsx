@@ -9,7 +9,7 @@ export default function Footer() {
                     Строительство инженерных и телекоммуникационных объектов. Надёжно. Ответственно. В срок.
                 </div>
                 <div className="footer__contact">
-                    Телефон: +7 (000) 000-00-00 | Email: nikilyakin@yandex.ru
+                    Телефон: 8 (918) 049-10-45 | Email: contactaicont.company@gmail.com
                 </div>
                 <div className="footer__address">
                     Адрес: Краснодарский край, г. Краснодар, х. Октябрьский, СНТ Кубаночка, ул. Сиреневая, д. 26
