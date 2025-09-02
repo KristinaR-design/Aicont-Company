@@ -26,63 +26,6 @@ section[id] {
   scroll-margin-top: var(--header-h);
 }
 
-/* === мягкий буст отступов и gap (поставь в самый низ файла) === */
-:root{
-  /* крутим только эти ручки, если захочется ещё+ или поменьше */
-  --sec-gap:  clamp(32px, 6.5vw, 72px);  /* было ~24–56 */
-  --grid-gap: clamp(22px, 4.6vw, 44px);  /* было ~18–40 */
-  --list-gap: clamp(14px, 2.8vw, 22px);  /* было ~12–20 */
-  --inner-gap: clamp(12px, 2.4vw, 18px); /* внутри карточек/шагов */
-}
-
-/* 1) Секции: увеличим вертикальный зазор между блоками */
-:where(.theft,.offer,.radio,.cycle,.deploy,.radio-analytics,.video-analytics,.dpi,.pbx){
-  margin-top: var(--sec-gap);
-}
-
-/* 2) Гриды секций: шире «дыхание» между колонками/строками */
-:where(
-  .theft__grid,.offer__grid,.radio__grid,.cycle__grid,
-  .deploy__grid,.radio-analytics__grid,.video-analytics__grid,
-  .dpi__grid,.pbx__grid
-){
-  gap: var(--grid-gap);
-}
-
-/* 3) Списки внутри секций: шаг между элементами побольше */
-:where(
-  .radio__list,.offer__list,.deploy__list,
-  .radio-analytics__list,.video-analytics__list,
-  .dpi__list,.pbx__list,.cycle__list
-){
-  gap: var(--list-gap);
-}
-
-/* 4) Внутренние карточки/шаги: чуть больше воздуха */
-:where(.cycle__step){ gap: var(--inner-gap); }
-
-/* 5) На очень узких — слегка усилить только вертикальные интервалы */
-@media (max-width: 480px){
-  :root{
-    --sec-gap:  clamp(36px, 9vw, 76px);
-    --grid-gap: clamp(20px, 5.5vw, 36px);
-    --list-gap: clamp(14px, 3.6vw, 20px);
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1212,5 +1155,107 @@ html, body { overflow-x: hidden; }
     max-width: 100%;
     height: auto;
     margin-right: 30px;
+  }
+}
+
+
+/* === spacing tweaks (поставь в самый низ файла) === */
+:root{
+  /* ручки: покрути цифры, если нужно больше/меньше */
+  --sec-gap:  clamp(36px, 6.5vw, 80px);  /* вертикальный зазор между секциями */
+  --grid-gap: clamp(22px, 4.8vw, 44px);  /* gap между колонками/строками гридов */
+  --list-gap: clamp(14px, 3vw, 22px);    /* расстояние между пунктами списков */
+  --inner-gap: clamp(12px, 2.6vw, 18px); /* внутри карточек/шагов */
+}
+
+/* 1) секции: больше воздуха сверху */
+.theft,
+.offer,
+.radio,
+.cycle,
+.deploy,
+.radio-analytics,
+.video-analytics,
+.dpi,
+.pbx{
+  margin-top: var(--sec-gap);
+}
+
+/* 2) гриды секций: шире промежутки */
+.theft__grid,
+.offer__grid,
+.radio__grid,
+.cycle__grid,
+.deploy__grid,
+.radio-analytics__grid,
+.video-analytics__grid,
+.dpi__grid,
+.pbx__grid{
+  gap: var(--grid-gap);
+}
+
+/* 3) списки внутри секций: шаг побольше */
+.radio__list,
+.deploy__list,
+.radio-analytics__list,
+.video-analytics__list,
+.dpi__list,
+.pbx__list,
+.cycle__list{
+  gap: var(--list-gap);
+}
+
+/* 4) шаги «Полного цикла»: чуть больше внутренний gap */
+.cycle__step{ gap: var(--inner-gap); }
+
+/* 5) немного расширим горизонтальные зазоры в карточках (иконка + текст) */
+.theft__item,
+.offer__item,
+.radio__item,
+.deploy__item{
+  column-gap: clamp(14px, 2.4vw, 18px);
+  row-gap:    clamp(8px,  2vw,   12px);
+}
+
+/* 6) мобильные: чуть сильнее вертикальные отступы, чтобы не теснилось */
+@media (max-width: 480px){
+  :root{
+    --sec-gap:  clamp(40px, 9vw, 84px);
+    --grid-gap: clamp(20px, 5.6vw, 38px);
+    --list-gap: clamp(14px, 3.6vw, 20px);
+  }
+}
+
+
+/* ==== reveal on scroll ==== */
+@media (prefers-reduced-motion: no-preference){
+  [data-reveal]{
+    opacity: 0;
+    transform: translateY(18px) scale(.98);
+    filter: blur(4px);
+    transition: opacity .6s ease, transform .6s ease, filter .6s ease;
+    will-change: opacity, transform, filter;
+  }
+  [data-reveal].is-visible{
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* варианты направления (необязательно) */
+  [data-reveal="up"]    { transform: translateY(18px); }
+  [data-reveal="left"]  { transform: translateX(-22px); }
+  [data-reveal="right"] { transform: translateX(22px); }
+
+  /* плавный «каскад» для детей контейнера */
+  [data-stagger] > *{
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .5s ease, transform .5s ease;
+    transition-delay: calc(var(--i, 0) * 80ms); /* зададим --i из JS */
+  }
+  [data-stagger].is-visible > *{
+    opacity: 1;
+    transform: none;
   }
 }

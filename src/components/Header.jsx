@@ -123,9 +123,9 @@ export default function Header() {
                     </div>
 
                     <div className="mobile-contacts">+7 (000) 000-00-00</div>
-                    <Link to="/application" className="cta-button" onClick={() => setIsMobileMenuOpen(false)}>
+                    {/* <Link to="/application" className="cta-button" onClick={() => setIsMobileMenuOpen(false)}>
                         Оставить заявку
-                    </Link>
+                    </Link> */}
                 </div>
             )}
         </header>

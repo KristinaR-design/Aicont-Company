@@ -1,5 +1,9 @@
 import Radar from "../img/Radar.jpg"; // или "/img/radar.png" из public
 import './About.scss'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+
 import Haker from '../img/theft/Haker.png'
 import HarmPO from '../img/theft/HarmPO.png'
 import Spy from '../img/theft/Spy.png'
@@ -41,11 +45,41 @@ import PBX from "../img/pbx/PBX.png"
 
 
 
-
 export default function About() {
+
+    useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target); // анимировать один раз
+                    }
+                });
+            },
+            { threshold: 0.16, rootMargin: '0px 0px -8% 0px' }
+        );
+
+        // наблюдаем все помеченные элементы
+        const nodes = document.querySelectorAll('[data-reveal]');
+        nodes.forEach((el) => {
+            io.observe(el);
+            // если хотим «каскад» для детей
+            if (el.hasAttribute('data-stagger')) {
+                el.querySelectorAll(':scope > *').forEach((child, i) => {
+                    child.style.setProperty('--i', i.toString());
+                });
+            }
+        });
+
+        return () => io.disconnect();
+    }, []);
+
     return (
         <>
-            <section className="hero-split" id="srv-hero">
+            <section className="hero-split" id="srv-hero" data-reveal="up">
                 <div className="hero-split__inner">
                     <div className="hero-split__media">
                         <img src={Radar} alt="Радар" />
@@ -66,7 +100,7 @@ export default function About() {
             </section>
 
 
-            <section className="theft" id="srv-threats">
+            <section className="theft" id="srv-threats" data-reveal="up">
                 <h2 className="theft__title">
                     КАК МОГУТ <span className="accent">УКРАСТЬ ВАШИ ДАННЫЕ</span>
                 </h2>
@@ -113,7 +147,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="offer" id="srv-offer">
+            <section className="offer" id="srv-offer" data-reveal="up">
                 <h2 className="offer__title">
                     ЧТО МЫ <span className="accent">ПРЕДЛАГАЕМ</span>
                 </h2>
@@ -150,7 +184,7 @@ export default function About() {
             </section>
 
 
-            <section className="radio" id="srv-radiomonitoring">
+            <section className="radio" id="srv-radiomonitoring" data-reveal="up">
                 <h2 className="radio__title">
                     <span className="accent">ПОЛНЫЙ КОНТРОЛЬ</span> РАДИОПРОСТРАНСТВА<br />
                     ВАШЕЙ ЛАБОРАТОРИИ
@@ -198,7 +232,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="cycle" id="srv-cycle">
+            <section className="cycle" id="srv-cycle" data-reveal="up">
                 <h2 className="cycle__title">
                     ПОЛНЫЙ <span className="accent">ЦИКЛ ЗАЩИТЫ</span>
                 </h2>
@@ -270,7 +304,7 @@ export default function About() {
             </section>
 
             {/* Внедрение и масштаб слайд 6 */}
-            <section className="deploy" id="srv-deploy">
+            <section className="deploy" id="srv-deploy" data-reveal="up">
                 <h2 className="deploy__title">
                     <span className="accent">ВНЕДРЕНИЕ</span> И МАСШТАБ
                 </h2>
@@ -332,7 +366,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="radio-analytics" id="srv-radio-analytics">
+            <section className="radio-analytics" id="srv-radio-analytics" data-reveal="up">
                 <h2 className="radio-analytics__title">
                     <span className="accent">РАДИО</span>АНАЛИТИКА
                 </h2>
@@ -363,7 +397,7 @@ export default function About() {
                 </div>
             </section>
 
-            <section className="video-analytics" id="srv-video-analytics">
+            <section className="video-analytics" id="srv-video-analytics" data-reveal="up">
                 <h2 className="video-analytics__title">
                     <span className="accent">ВИДЕО</span>АНАЛИТИКА
                 </h2>
@@ -402,7 +436,7 @@ export default function About() {
             </section>
 
 
-            <section className="dpi" id="srv-dpi">
+            <section className="dpi" id="srv-dpi" data-reveal="up">
                 <h2 className="dpi__title">
                     АНАЛИЗ КОРПОРАТИВНОГО ТРАФИКА
                     <span className="dpi__subtitle">(DPI)</span>
@@ -436,7 +470,7 @@ export default function About() {
             </section>
 
 
-            <section className="pbx" id="srv-pbx">
+            <section className="pbx" id="srv-pbx" data-reveal="up">
                 <h2 className="pbx__title">
                     <span className="accent">КОРПОРАТИВНАЯ АТС</span><br />
                     И ЗАЩИЩЕННЫЙ МЕССЕНДЖЕР С ВКС

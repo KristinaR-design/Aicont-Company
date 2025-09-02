@@ -249,10 +249,10 @@ $border-radius: 10px;
   .mobile-services {
     margin: 8px 0;
     gap: 0;                    /* убираем большие зазоры */
-    border: 1px solid rgba(255,255,255,.08);
+    border: 1px solid rgba(255, 255, 255, 0.958);
     border-radius: 12px;
     overflow: hidden;          /* скругления по контейнеру */
-    background: rgba(255,255,255,.03);
+    background: rgba(2, 6, 29, 0.644);
   }
 
   .mobile-service-item {
